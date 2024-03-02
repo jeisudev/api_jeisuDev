@@ -11,6 +11,7 @@
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        echo "conectado com sucesso: " . $e->getMessage();
     } catch(PDOException $e) {
         echo "Erro na conexão com o banco de dados: " . $e->getMessage();
     }
@@ -26,39 +27,6 @@
 
 //========================================================================\\
 //                          FIM VARIAVEIS DE AMBIENTE
-//========================================================================\\
-//========================================================================\\
-//                          VERIFICAÇÃO DE ACESSO
-//========================================================================\\
-
-// Chaves de acesso permitidas (simulando um banco de dados de chaves)
-//$allowedKeys = [
-//    'apikey' => 'user1',
-//    'apikey' => 'user2'
-//];
-
-// Função para verificar a chave de acesso
-//function verifyApiKey($apiKey) {
-//    global $allowedKeys;
-//    return isset($allowedKeys[$apiKey]);
-//}
-
-// Verificar se a chave de acesso foi fornecida
-//if (!isset($_GET['apiKey'])) {
-//    http_response_code(401); // Chave de acesso não fornecida
-//    echo json_encode(['error' => 'Chave de acesso não fornecida']);
-//    exit();
-//}
-
-// Verificar se a chave de acesso é válida
-//$apiKey = $_GET['apiKey'];
-//if (!verifyApiKey($apiKey)) {
-//    http_response_code(401); // Chave de acesso inválida
-//    echo json_encode(['error' => 'Chave de acesso inválida']);
-//    exit();
-//}
-//========================================================================\\
-//                     FINAL DA VERIFICAÇÃO DE ACESSO
 //========================================================================\\
 
 //========================================================================\\
