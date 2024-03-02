@@ -66,7 +66,9 @@
 //========================================================================\\
 
 // Endpoint para obter todos os usuários
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($metodo) && $metodo === 'pesquisa_users') {
+print_r($metodo);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($metodo) && $metodo == 'pesquisa_users') {
+        print_r('users');
         $stmt = $conn->prepare("SELECT * FROM users");
         $stmt->execute();
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
