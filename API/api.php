@@ -11,7 +11,7 @@
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "conectado com sucesso: ";
+        //echo "conectado com sucesso: ";
     } catch(PDOException $e) {
         echo "Erro na conexão com o banco de dados: " . $e->getMessage();
     }
@@ -23,7 +23,7 @@
 //                          VARIAVEIS DE AMBIENTE
 //========================================================================\\    
 
-    $metodo = $_POST['metodo'];
+    $metodo = $_REQUEST['metodo'];
 
 //========================================================================\\
 //                          FIM VARIAVEIS DE AMBIENTE
@@ -34,9 +34,8 @@
 //========================================================================\\
 
 // Endpoint para obter todos os usuários
-print_r($metodo);
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($metodo) && $metodo == 'pesquisa_users') {
-        print_r('users');
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($metodo) && $metodo === 'pesquisa_users') {
         $stmt = $conn->prepare("SELECT * FROM users");
         $stmt->execute();
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -45,7 +44,7 @@ print_r($metodo);
     }
 
  // Endpoint para criar um novo usuário
-    elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['endpoint']) && $_POST['endpoint'] === 'users') {
+    elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($metodo) && $metodo === 'insere_users') {
         // Lógica para criar um novo usuário
         // Exemplo: INSERT INTO users (name, email) VALUES (:name, :email)
     }
