@@ -11,7 +11,7 @@
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "conectado com sucesso: " . $e->getMessage();
+        echo "conectado com sucesso: ";
     } catch(PDOException $e) {
         echo "Erro na conexão com o banco de dados: " . $e->getMessage();
     }
