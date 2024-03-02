@@ -1,12 +1,39 @@
 <?php
 //========================================================================\\
+//                          API JEISON DEV
+//========================================================================\\ 
+
+//========================================================================\\
+//                          VARIAVEIS DE AMBIENTE
+//========================================================================\\    
+
+    $metodo                 = $_REQUEST['metodo'];
+    $chaveRecebida          = $_REQUEST['apikey'];
+
+//=====================================================================\\
+//                      AUTENTICATION API KEY
+//=====================================================================\\
+    $chavesValidas = ['jeison_teste','teste_api'];
+    $liberation = false;
+   
+    if (in_array($chaveRecebida, $chavesValidas)) {
+        // echo "Acesso concedido!";
+        $liberation = true;
+    } else { 
+        http_response_code(401);
+        echo "Acesso negado. Chave de API:$chaveRecebida è inválida.";
+        exit;
+    }
+//========================================================================\\
 //                              CONEXÃO AO DB
 //========================================================================\\
 // Conexão com o banco de dados (exemplo usando PDO)
-    $servername = "127.0.0.1:3306";
-    $username = "u957913582_jeisondev";
-    $password = "Jc7es8@dp9";
-    $dbname = "u957913582_api_jeisodev";
+    if($liberation == true){
+        $servername = "127.0.0.1:3306";
+        $username = "u957913582_jeisondev";
+        $password = "Jc7es8@dp9";
+        $dbname = "u957913582_api_jeisodev";
+    }
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -15,19 +42,6 @@
     } catch(PDOException $e) {
         echo "Erro na conexão com o banco de dados: " . $e->getMessage();
     }
-
-//========================================================================\\
-//                             FIM CONEXÃO AO DB
-//========================================================================\\
-//========================================================================\\
-//                          VARIAVEIS DE AMBIENTE
-//========================================================================\\    
-
-    $metodo = $_REQUEST['metodo'];
-
-//========================================================================\\
-//                          FIM VARIAVEIS DE AMBIENTE
-//========================================================================\\
 
 //========================================================================\\
 //                  INICIO DE ALGUNS METODOS DA API
