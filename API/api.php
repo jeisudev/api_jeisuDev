@@ -50,7 +50,7 @@
 // Endpoint para obter todos os usuários
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($metodo) && $metodo === 'pesquisa_users') {
-        $stmt = $conn->prepare("SELECT * FROM users");
+        $stmt = $conn->prepare("SELECT * FROM users WHERE deletado = N");
         $stmt->execute();
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         header('Content-Type: application/json');
